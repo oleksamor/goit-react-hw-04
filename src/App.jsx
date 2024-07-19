@@ -13,6 +13,7 @@ const App = () => {
       const response = await axios.get(`${BASE_URL}${END_POINT}${API_KEY}`);
       console.log(response);
       setFoundPhotos(response.data);
+      console.log(foundPhotos);
     }
 
     fetchArticles();
@@ -20,8 +21,17 @@ const App = () => {
 
   return (
     <div>
-      <h1>Latest articles</h1>
-      {/* {foundPhotos.length > 0 && <ul>{foundPhotos.map({})}</ul>} */}
+      <h1>Founded Photos</h1>
+      {foundPhotos.length > 0 && (
+        <ul>
+          {foundPhotos.map(({ id, urls, alt_description }) => (
+            <li key={id}>
+              <img src={urls.thumb} alt={alt_description} />
+            </li>
+          ))}
+        </ul>
+      )}
+      ;
     </div>
   );
 };
