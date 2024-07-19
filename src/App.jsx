@@ -1,35 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import axios from "axios";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const BASE_URL = "https://api.unsplash.com";
+  const END_POINT = "/photos";
+  const API_KEY = "?client_id=Go226QvQvgbGm-oUywR6xLvY6paUXF6EogrHdg7-WkE";
+  const [foundPhotos, setFoundPhotos] = useState([]);
+
+  useEffect(() => {
+    async function fetchArticles() {
+      const response = await axios.get(`${BASE_URL}${END_POINT}${API_KEY}`);
+      console.log(response);
+      setFoundPhotos(response.data);
+    }
+
+    fetchArticles();
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div>
+      <h1>Latest articles</h1>
+      {/* {foundPhotos.length > 0 && <ul>{foundPhotos.map({})}</ul>} */}
+    </div>
+  );
+};
 
-export default App
+export default App;
