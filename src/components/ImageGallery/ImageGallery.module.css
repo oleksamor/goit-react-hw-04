@@ -1,0 +1,12 @@
+.listGallery {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: start;
+    gap: 4px;
+}
+
+.listGalleryItem {
+    list-style-type: none;
+}
