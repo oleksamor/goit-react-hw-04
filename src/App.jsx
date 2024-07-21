@@ -20,6 +20,7 @@ const App = () => {
   useEffect(() => {
     async function fetchPhotos() {
       const response = await fetchImages();
+      setFoundPhotos(response);
     }
 
     fetchPhotos();
