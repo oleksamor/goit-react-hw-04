@@ -2,32 +2,32 @@ import React from "react";
 import s from "./SearchBar.module.css";
 
 const SearchBar = ({ onSubmit }) => {
-  const initialValues = {
-    query: "",
-    page: 1,
-  };
-
   const formSubmit = (e) => {
-    console.log(e);
     e.preventDefault();
-    const { value } = e.target.elements.search;
+    const form = e.target;
 
-    onSubmit(value);
+    // const { value } = form.elements.search;
+    const topic = form.elements.topic.value;
+    console.log(topic);
+    onSubmit(topic);
+    form.reset();
   };
 
   return (
-    <form>
-      <input
-        type="search"
-        autoComplete="off"
-        autoFocus
-        placeholder="Search images and photos"
-      />
+    <header className={s.header}>
+      <form className={s.form}>
+        <input
+          type="search"
+          autoComplete="off"
+          autoFocus
+          placeholder="Search images and photos"
+        />
 
-      <button type="submit" onSubmit={formSubmit}>
-        Search
-      </button>
-    </form>
+        <button className={s.submitBtn} type="submit" onSubmit={formSubmit}>
+          Search
+        </button>
+      </form>
+    </header>
   );
 };
 

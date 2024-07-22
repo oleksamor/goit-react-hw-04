@@ -5,7 +5,6 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import { fetchImages } from "./services/api";
 import Loader from "./components/Loader/Loader";
 // import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
-// import Loader from "./components/Loader/Loader";
 
 const App = () => {
   const [foundPhotos, setFoundPhotos] = useState([]);
@@ -23,7 +22,7 @@ const App = () => {
   useEffect(() => {
     setIsLoading(true);
     async function fetchPhotos() {
-      if (!query) return;
+      // if (!query) return;
       const response = await fetchImages(query, page);
       setIsLoading(false);
       setFoundPhotos(response);
@@ -37,6 +36,7 @@ const App = () => {
       <SearchBar onSubmit={handleSubmit} />
       {foundPhotos.length > 0 && <ImageGallery items={foundPhotos} />}
       {isLoading && <Loader />}
+      <button type="button">Load more</button>
     </div>
   );
 };
