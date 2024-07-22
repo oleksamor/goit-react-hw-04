@@ -1,14 +1,20 @@
 import React from "react";
 import s from "./Loader.module.css";
-import { Audio } from "react-loader-spinner";
-<Audio
-  height="80"
-  width="80"
-  radius="9"
-  color="green"
-  ariaLabel="three-dots-loading"
-  wrapperStyle
-  wrapperClass
-/>;
+import { Comment } from "react-loader-spinner";
+
+const Loader = () => (
+  <div className={s.Loader}>
+    <Comment
+      visible={true}
+      height="80"
+      width="80"
+      ariaLabel="comment-loading"
+      wrapperStyle={{}}
+      wrapperClass="comment-wrapper"
+      color="#fff"
+      backgroundColor="#F4442E"
+    />
+  </div>
+);
 
 export default Loader;
