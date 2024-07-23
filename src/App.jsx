@@ -20,16 +20,17 @@ const App = () => {
   };
 
   useEffect(() => {
-    setIsLoading(true);
     async function fetchPhotos() {
-      // if (!query) return;
-      const response = await fetchImages(query, page);
-      setIsLoading(false);
-      setFoundPhotos(response);
+      if (!query) return;
+      try {
+        const response = await fetchImages(query, page);
+        setFoundPhotos(response);
+      } catch (error) {
+        console.log(error);
+      }
     }
-
     fetchPhotos();
-  }, [query]);
+  }, []);
 
   return (
     <div>
