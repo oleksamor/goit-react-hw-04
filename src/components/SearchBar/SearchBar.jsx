@@ -6,11 +6,11 @@ const SearchBar = ({ onSubmit }) => {
     e.preventDefault();
     const form = e.target;
 
-    // const { value } = form.elements.search;
+    const value = form.elements.search;
     const topic = form.elements.topic.value;
-    console.log(topic);
+
     onSubmit(topic);
-    form.reset();
+    // form.reset();
   };
 
   return (

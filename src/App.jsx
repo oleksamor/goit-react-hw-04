@@ -4,33 +4,42 @@ import ImageGallery from "./components/ImageGallery/ImageGallery";
 import SearchBar from "./components/SearchBar/SearchBar";
 import { fetchImages } from "./services/api";
 import Loader from "./components/Loader/Loader";
-// import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
+import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 
 const App = () => {
-  const [foundPhotos, setFoundPhotos] = useState([]);
-  const [query, setQuery] = useState("");
+  const [foundPhotos, setFoundPhotos] = useState("");
+  // const [query, setQuery] = useState("");
   // const [pictures, setPictures] = useState([]);
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
-  const handleSubmit = (value) => {
-    setFoundPhotos(value);
-    // setPictures([]);
+  const handleSubmit = () => {
+    setFoundPhotos("");
+    setImages([]);
     setPage(1);
   };
 
   useEffect(() => {
     async function fetchPhotos() {
-      if (!query) return;
+      if (!foundPhotos) return;
       try {
-        const response = await fetchImages(query, page);
+        setIsLoading(true);
+        setIsError(false);
+
+        const response = await fetchImages(foundPhotos, page, 12);
+
+        console.log(response);
         setFoundPhotos(response);
       } catch (error) {
-        console.log(error);
+        setIsError(true);
+      } finally {
+        setIsLoading(false);
       }
+
+      fetchPhotos();
     }
-    fetchPhotos();
-  }, []);
+  }, [foundPhotos, page]);
 
   return (
     <div>
