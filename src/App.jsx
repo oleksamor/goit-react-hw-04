@@ -15,8 +15,8 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  const handleSubmit = () => {
-    setFoundPhotos("");
+  const handleSubmit = (value) => {
+    setFoundPhotos(value);
     setImages([]);
     setPage(1);
   };
