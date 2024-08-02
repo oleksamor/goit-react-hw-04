@@ -5,7 +5,7 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import { fetchImages } from "./services/api";
 import Loader from "./components/Loader/Loader";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   const [foundPhotos, setFoundPhotos] = useState("");
@@ -47,6 +47,7 @@ const App = () => {
       <SearchBar onSubmit={handleSubmit} />
       {foundPhotos.length > 0 && <ImageGallery items={foundPhotos} />}
       {isLoading && <Loader />}
+      <Toaster />
       <button type="button">Load more</button>
     </div>
   );
