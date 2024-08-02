@@ -5,10 +5,11 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import { fetchImages } from "./services/api";
 import Loader from "./components/Loader/Loader";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
+import toast, { Toaster } from "react-hot-toast";
 
 const App = () => {
   const [foundPhotos, setFoundPhotos] = useState("");
-  // const [query, setQuery] = useState("");
+  const [query, setQuery] = useState("");
   // const [pictures, setPictures] = useState([]);
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);

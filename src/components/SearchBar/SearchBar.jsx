@@ -1,15 +1,17 @@
 import React from "react";
+import toast, { Toaster } from "react-hot-toast";
 import s from "./SearchBar.module.css";
 
 const SearchBar = ({ onSubmit }) => {
   const formSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
-
-    const value = form.elements.search;
-    const topic = form.elements.topic.value;
-
-    onSubmit(topic);
+    const { value } = form.elements.search;
+    console.log(value);
+    if (!value) {
+      return toast.error("This didn't work.");
+    }
+    onSubmit(value);
     // form.reset();
   };
 
@@ -23,7 +25,7 @@ const SearchBar = ({ onSubmit }) => {
           placeholder="Search images and photos"
         />
 
-        <button className={s.submitBtn} type="submit" onSubmit={formSubmit}>
+        <button className={s.submitBtn} type="submit">
           Search
         </button>
       </form>

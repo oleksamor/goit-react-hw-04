@@ -1,9 +1,5 @@
 import axios from "axios";
 
-// const BASE_URL = "https://api.unsplash.com";
-// const END_POINT = "/search/photos";
-// const accessKey = "Go226QvQvgbGm-oUywR6xLvY6paUXF6EogrHdg7-WkE";
-
 export const fetchImages = async (foundPhotos, page = 1, per_page = 5) => {
   const BASE_URL = "https://api.unsplash.com";
   const END_POINT = "/search/photos?";
@@ -21,12 +17,13 @@ export const fetchImages = async (foundPhotos, page = 1, per_page = 5) => {
         per_page,
       },
     });
-
+    console.log(response.data);
     setImages((prev) => [...prev, ...response.data]);
+
+    return response.data;
   } catch (error) {
     setError("Error fetching images");
   } finally {
     setIsLoading(false);
   }
-  return response.data;
 };
