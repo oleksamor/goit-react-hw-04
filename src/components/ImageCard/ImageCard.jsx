@@ -1,11 +1,15 @@
-import React from "react";
 import s from "./ImageCard.module.css";
 
-const ImageCard = () => {
+const ImageCard = ({ item, onClick }) => {
   return (
-    <div>
-      <img src={urls.small} alt={alt_description} />
-    </div>
+    <li className={s.card}>
+      <img
+        src={item.urls.small}
+        alt={item.slug}
+        onClick={() => onClick(item.urls.regular)}
+        style={{ cursor: "pointer" }}
+      />
+    </li>
   );
 };
 
