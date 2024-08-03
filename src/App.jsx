@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./App.css";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
 // import SearchBar from "./components/SearchBar/SearchBar";
-import axios from "axios";
+
 // import { fetchImages } from "./services/api";
 // import Loader from "./components/Loader/Loader";
 // import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
@@ -19,34 +20,35 @@ const App = () => {
 
   // const handleSubmit = (value) => {
   //   setFetchPhotos(value);
-  //   setImages([]);
+  //   setImages([])
   //   setPage(1);
-  // };
+  // }; `````
 
   useEffect(() => {
-    // const getData = async () => {
-    // if (!query) return;
-    // try {
-    // setIsLoading(true);
-    // setIsError(false);
+    const fetchData = async () => {
+      const accessKey = "Go226QvQvgbGm-oUywR6xLvY6paUXF6EogrHdg7-WkE";
+      const res = await axios.get("https://api.unsplash.com/photos", {
+        headers: {
+          Authorization: `Client-ID ${accessKey}`,
+        },
+        params: {
+          query: query,
+          page,
+          per_page,
+        },
+      });
+      console.log(res.results);
+      setResults(res.results);
 
-    axios
-      .get(
-        "https://api.unsplash.com/photos?client_id=Go226QvQvgbGm-oUywR6xLvY6paUXF6EogrHdg7-WkE"
-      )
-      .then((res) => setResults(res.data))
-      .catch();
-
-    // console.log(response.data);
-    // setFetchPhotos(response);
-    // } catch (error) {
-    //   setIsError(true);
-    // } finally {
-    //   setIsLoading(false);
-    // }
-    // getData();
-    // };
-  }, []);
+      // setFetchPhotos(response);
+      // } catch (error) {
+      //   setIsError(true);
+      // } finally {
+      //   setIsLoading(false);
+      // }
+      fetchData();
+    };
+  }, [results]);
 
   return (
     <div>
