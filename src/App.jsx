@@ -25,9 +25,9 @@ const App = () => {
   // }; `````
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async (query = nature, page = 1, per_page = 5) => {
       const accessKey = "Go226QvQvgbGm-oUywR6xLvY6paUXF6EogrHdg7-WkE";
-      const res = await axios.get("https://api.unsplash.com/photos", {
+      const res = await axios.get("https://api.unsplash.com/search/photos", {
         headers: {
           Authorization: `Client-ID ${accessKey}`,
         },
