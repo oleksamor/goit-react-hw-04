@@ -1,7 +1,7 @@
-// import React from "react";
-// // import toast from "react-hot-toast";
-// import s from "./SearchBar.module.css";
-// import { Form, Field, Formik } from "formik";
+import React from "react";
+import toast from "react-hot-toast";
+import s from "./SearchBar.module.css";
+import { Form, Field, Formik } from "formik";
 
 // const SearchBar = ({ setQuery }) => {
 //   const initialValues = { query: "" };

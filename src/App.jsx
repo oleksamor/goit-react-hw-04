@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import "./App.css";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
+import { fetchImages } from "./services/api";
 // import SearchBar from "./components/SearchBar/SearchBar";
 
 // import { fetchImages } from "./services/api";
 // import Loader from "./components/Loader/Loader";
 // import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 // import { Toaster } from "react-hot-toast";
-
 const App = () => {
-  const [results, setResults] = useState([]);
+  const [result, setResult] = useState([]);
   // const [query, setQuery] = useState("car");
   // const [pictures, setPictures] = useState([]);
   // const [page, setPage] = useState(1);
@@ -22,37 +21,26 @@ const App = () => {
   //   setFetchPhotos(value);
   //   setImages([])
   //   setPage(1);
-  // }; `````
-
+  // };
   useEffect(() => {
-    const fetchData = async (query = nature, page = 1, per_page = 5) => {
-      const accessKey = "Go226QvQvgbGm-oUywR6xLvY6paUXF6EogrHdg7-WkE";
-      const res = await axios.get("https://api.unsplash.com/search/photos", {
-        headers: {
-          Authorization: `Client-ID ${accessKey}`,
-        },
-        params: {
-          query: query,
-          page,
-          per_page,
-        },
-      });
-      console.log(res.results);
-      setResults(res.results);
-
+    const fetchData = async () => {
+      const response = await fetchImages("car", 4);
+      console.log(response);
+      setResult(response);
+      // return response;
       // setFetchPhotos(response);
       // } catch (error) {
       //   setIsError(true);
       // } finally {
       //   setIsLoading(false);
       // }
-      fetchData();
     };
-  }, [results]);
+    fetchData();
+  }, [result]);
 
   return (
     <div>
-      <ImageGallery items={results} />
+      {result.length > 0 && <ImageGallery items={result} />}
       {/* <SearchBar /> */}
       {/* {fetchPhotos.length > 0 && <ImageGallery items={foundPhotos} />}
       {isLoading && <Loader />} */}
