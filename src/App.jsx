@@ -5,7 +5,7 @@ import { fetchImages } from "./services/api";
 import SearchBar from "./components/SearchBar/SearchBar";
 
 // import { fetchImages } from "./services/api";
-// import Loader from "./components/Loader/Loader";
+import Loader from "./components/Loader/Loader";
 // import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 // import { Toaster } from "react-hot-toast";
 const App = () => {
@@ -13,8 +13,8 @@ const App = () => {
   const [query, setQuery] = useState("car");
   // const [pictures, setPictures] = useState([]);
   const [page, setPage] = useState(1);
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
   // const [fetchPhotos, setFetchPhotos] = useState([]);
 
   const handleSubmit = (value) => {
@@ -24,27 +24,30 @@ const App = () => {
   };
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetchImages(query, page, 2);
-      // setImages((prev) => [...prev, ...response.data]);
-      console.log(response);
-      setResult(response);
-      // return response;
-      // setFetchPhotos(response);
-      // } catch (error) {=
-      //   setIsError(true);
-      // } finally {
-      //   setIsLoading(false);
-      // }ß
+      try {
+        setIsLoading(true);
+        const response = await fetchImages(query, page, 10);
+        setIsLoading(false);
+        setResult(response);
+        // return response;
+        // setFetchPhotos(response);
+      } catch (error) {
+        setIsError(true);
+      } finally {
+        setIsLoading(false);
+      }
     };
     fetchData();
   }, [query]);
 
   return (
     <div>
-      {query.length > 0 && <ImageGallery items={result} />}
       <SearchBar setQuery={setQuery} />
-      {/* {fetchPhotos.length > 0 && <ImageGallery items={foundPhotos} />}
-      {isLoading && <Loader />} */}
+      {isLoading && <Loader />}
+      {query.length > 0 && <ImageGallery items={result} />}
+
+      {/* {fetchPhotos.length > 0 && <ImageGallery items={foundPhotos} />} */}
+
       {/* <Toaster /> */}
       <button type="button">Load more</button>
     </div>
