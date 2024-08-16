@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const fetchImages = async (query, per_page = 3) => {
+export const fetchImages = async (query, page, per_page) => {
   const accessKey = "Go226QvQvgbGm-oUywR6xLvY6paUXF6EogrHdg7-WkE";
   //   setIsLoading(true);
   //   setError(null);
@@ -11,13 +11,13 @@ export const fetchImages = async (query, per_page = 3) => {
       },
       params: {
         query,
-        page: 1,
+        page: page,
         per_page: per_page,
       },
     });
 
     console.log(response.data.results);
-    // setImages((prev) => [...prev, ...response.data]);
+    //
 
     return response.data.results;
   } catch (error) {
