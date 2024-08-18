@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const fetchImages = async (query, page, per_page = 3) => {
+export const fetchImages = async (query, page, per_page = 5) => {
   const accessKey = "Go226QvQvgbGm-oUywR6xLvY6paUXF6EogrHdg7-WkE";
   //   setIsLoading(true);
   //   setError(null);

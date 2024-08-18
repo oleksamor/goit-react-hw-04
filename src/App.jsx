@@ -51,14 +51,13 @@ const App = () => {
   return (
     <div>
       <SearchBar setQuery={handleSetQuery} />
-      {isLoading && <Loader />}
-      {query.length > 0 && <ImageGallery items={result} />}
       {isError && <ErrorMessage />}
-      {/* {fetchPhotos.length > 0 && <ImageGallery items={foundPhotos} />} */}
-
-      {total > page && (
+      {query.length > 0 && <ImageGallery items={result} />}
+      {isLoading && <Loader />}
+      {total > page && !isLoading && (
         <button onClick={() => setPage((prev) => prev + 1)}>Load more</button>
       )}
+      {/* {fetchPhotos.length > 0 && <ImageGallery items={foundPhotos} />} */}
     </div>
   );
 };
