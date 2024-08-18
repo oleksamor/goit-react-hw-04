@@ -17,20 +17,23 @@ const App = () => {
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [total, setTotal] = useState(0);
   // const [fetchPhotos, setFetchPhotos] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
+      if (!query) {
+        return;
+      }
       try {
         setIsLoading(true);
         setIsError(false);
-        if (query === "") {
-          return;
-        }
-        const response = await fetchImages(query, page);
-        console.log(query);
+
+        const res = await fetchImages(query, page);
         setIsLoading(false);
-        setResult((prev) => [...prev, ...response]);
+        setResult((prev) => [...prev, ...res.results]);
+        // console.log(res.results);
+        setTotal(res.total_pages);
       } catch (error) {
         setIsError(true);
       } finally {
@@ -53,7 +56,9 @@ const App = () => {
       {isError && <ErrorMessage />}
       {/* {fetchPhotos.length > 0 && <ImageGallery items={foundPhotos} />} */}
 
-      <button onClick={() => setPage((prev) => prev + 1)}>Load more</button>
+      {total > page && (
+        <button onClick={() => setPage((prev) => prev + 1)}>Load more</button>
+      )}
     </div>
   );
 };
