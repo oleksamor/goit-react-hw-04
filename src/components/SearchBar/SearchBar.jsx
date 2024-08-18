@@ -9,16 +9,16 @@ const SearchBar = ({ setQuery }) => {
     console.log(values);
     setQuery(values.query);
   };
-  //   // const formSubmit = (e) => {
-  //   //   e.preventDefault();
-  //   //   const { value } = e.target.elements.search;
+  // const formSubmit = (e) => {
+  //   e.preventDefault();
+  //   const { value } = e.target.elements.search;
 
-  //   //   console.log(value);
-  //   //   if (!value) {
-  //   //     return toast.error("This didn't work.");
-  //   //   }
-  //   //   onSubmit(value);
-  //   //   form.reset();
+  //   console.log(value);
+  //   if (!value) {
+  //     return toast.error("This didn't work.");
+  //   }
+  //   onSubmit(value);
+  //   form.reset();
 
   return (
     <div>

@@ -6,31 +6,31 @@ import SearchBar from "./components/SearchBar/SearchBar";
 
 // import { fetchImages } from "./services/api";
 import Loader from "./components/Loader/Loader";
+import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 // import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 // import { Toaster } from "react-hot-toast";
+// import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 const App = () => {
   const [result, setResult] = useState([]);
-  const [query, setQuery] = useState("car");
+  const [query, setQuery] = useState("");
   // const [pictures, setPictures] = useState([]);
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   // const [fetchPhotos, setFetchPhotos] = useState([]);
 
-  const handleSubmit = (value) => {
-    // setFetchPhotos(value);
-    // setImages([]);
-    // setPage(1);
-  };
   useEffect(() => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const response = await fetchImages(query, page, 10);
+        setIsError(false);
+        if (query === "") {
+          return;
+        }
+        const response = await fetchImages(query, page);
+        console.log(query);
         setIsLoading(false);
-        setResult(response);
-        // return response;
-        // setFetchPhotos(response);
+        setResult((prev) => [...prev, ...response]);
       } catch (error) {
         setIsError(true);
       } finally {
@@ -38,18 +38,22 @@ const App = () => {
       }
     };
     fetchData();
-  }, [query]);
+  }, [query, page]);
 
+  const handleSetQuery = (query) => {
+    setQuery(query);
+    setResult([]);
+    setPage(1);
+  };
   return (
     <div>
-      <SearchBar setQuery={setQuery} />
+      <SearchBar setQuery={handleSetQuery} />
       {isLoading && <Loader />}
       {query.length > 0 && <ImageGallery items={result} />}
-
+      {isError && <ErrorMessage />}
       {/* {fetchPhotos.length > 0 && <ImageGallery items={foundPhotos} />} */}
 
-      {/* <Toaster /> */}
-      <button type="button">Load more</button>
+      <button onClick={() => setPage((prev) => prev + 1)}>Load more</button>
     </div>
   );
 };

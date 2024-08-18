@@ -6,8 +6,8 @@ const Loader = () => (
   <div className={s.Loader}>
     <Comment
       visible={true}
-      height="80"
-      width="80"
+      height="180"
+      width="180"
       ariaLabel="comment-loading"
       wrapperStyle={{}}
       wrapperClass="comment-wrapper"
