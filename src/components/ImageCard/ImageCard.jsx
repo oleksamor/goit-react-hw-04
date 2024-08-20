@@ -8,7 +8,7 @@ const ImageCard = ({ image, onClick }) => {
         src={image.urls.small}
         alt={image.slug}
         onClick={() => onClick(image.urls.regular)}
-        style={{ cursor: "pointer" }}
+        style={{ cursor: "zoom-in" }}
       />
     </li>
   );
