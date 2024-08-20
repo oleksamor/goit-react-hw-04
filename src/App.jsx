@@ -3,22 +3,31 @@ import "./App.css";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
 import { fetchImages } from "./services/api";
 import SearchBar from "./components/SearchBar/SearchBar";
-
-// import { fetchImages } from "./services/api";
 import Loader from "./components/Loader/Loader";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 // import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 // import { Toaster } from "react-hot-toast";
 // import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
+import ImageModal from "./components/ImageModal/ImageModal";
+
 const App = () => {
   const [result, setResult] = useState([]);
   const [query, setQuery] = useState("");
-  // const [pictures, setPictures] = useState([]);
+  const [images, setImages] = useState([]);
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [total, setTotal] = useState(0);
-  // const [fetchPhotos, setFetchPhotos] = useState([]);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,6 +52,10 @@ const App = () => {
     fetchData();
   }, [query, page]);
 
+  const handleImageClick = (image) => {
+    setSelectedImage(image);
+  };
+
   const handleSetQuery = (query) => {
     setQuery(query);
     setResult([]);
@@ -52,12 +65,16 @@ const App = () => {
     <div>
       <SearchBar setQuery={handleSetQuery} />
       {isError && <ErrorMessage />}
-      {query.length > 0 && <ImageGallery items={result} />}
+      {query.length > 0 && (
+        <ImageGallery items={result} onImageClick={handleImageClick} />
+      )}
       {isLoading && <Loader />}
       {total > page && !isLoading && (
         <button onClick={() => setPage((prev) => prev + 1)}>Load more</button>
       )}
-      {/* {fetchPhotos.length > 0 && <ImageGallery items={foundPhotos} />} */}
+      {selectedImage && (
+        <ImageModal image={selectedImage} onClose={closeModal} />
+      )}
     </div>
   );
 };
