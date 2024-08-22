@@ -1,3 +1,19 @@
-.loadmore {
+.LoadMoreWrapper {
     display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.LoadMoreBtn {
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(225, 225, 187);
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.LoadMoreBtn:hover {
+    color: brown;
 }

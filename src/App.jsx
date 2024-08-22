@@ -5,9 +5,7 @@ import { fetchImages } from "./services/api";
 import SearchBar from "./components/SearchBar/SearchBar";
 import Loader from "./components/Loader/Loader";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
-// import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
-// import { Toaster } from "react-hot-toast";
-// import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
+import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./components/ImageModal/ImageModal";
 
 const App = () => {
@@ -66,7 +64,7 @@ const App = () => {
       )}
       {isLoading && <Loader />}
       {total > page && !isLoading && (
-        <button onClick={() => setPage((prev) => prev + 1)}>Load more</button>
+        <LoadMoreBtn onClick={() => setPage((prev) => prev + 1)} />
       )}
       {selectedImage && (
         <ImageModal image={selectedImage} onClose={closeModal} />
