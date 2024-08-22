@@ -16,4 +16,5 @@
 
 .LoadMoreBtn:hover {
     color: brown;
+    transition: 0.7s;
 }
