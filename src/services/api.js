@@ -16,9 +16,6 @@ export const fetchImages = async (query, page, per_page = 5) => {
       },
     });
 
-    console.log(response.data);
-    //
-
     return response.data;
   } catch (error) {
     // setError("Error fetching images");

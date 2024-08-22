@@ -1,19 +1,20 @@
-import React from "react";
 import s from "./ImageModal.module.css";
 import Modal from "react-modal";
+
+Modal.setAppElement("#root");
 
 const ImageModal = ({ image, onClose }) => {
   return (
     <Modal
       isOpen={!!image}
-      onRequestClose={onClose}
       className={s.ImageModal}
-      overlayClassName={s.Overlay}
+      onRequestClose={onClose}
+      shouldCloseOnEsc={true}
+      shouldCloseOnOverlayClick={true}
     >
-      <button onClick={onClose} className={s.closeBtn}>
-        {/* <RxCross2 /> */}
-      </button>
-      <img src={image.urls.regular} alt={image.alt_description} />
+      <div>
+        <img src={image.urls.regular} />
+      </div>
     </Modal>
   );
 };

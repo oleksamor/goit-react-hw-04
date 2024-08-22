@@ -6,7 +6,6 @@ import { Form, Field, Formik } from "formik";
 const SearchBar = ({ setQuery }) => {
   const initialValues = { query: "" };
   const handleSubmit = (values) => {
-    console.log(values);
     setQuery(values.query);
   };
   // const formSubmit = (e) => {

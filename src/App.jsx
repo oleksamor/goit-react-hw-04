@@ -13,7 +13,6 @@ import ImageModal from "./components/ImageModal/ImageModal";
 const App = () => {
   const [result, setResult] = useState([]);
   const [query, setQuery] = useState("");
-  const [images, setImages] = useState([]);
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -21,12 +20,9 @@ const App = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const openModal = () => {
-    setModalIsOpen(true);
-  };
-
   const closeModal = () => {
     setModalIsOpen(false);
+    setSelectedImage("");
   };
 
   useEffect(() => {
