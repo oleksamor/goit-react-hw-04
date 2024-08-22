@@ -1,11 +1,6 @@
 .header {
-    display: flex;
-    /* justify-content: center;
-    align-items: center; */
-    gap: 10px;
     width: 100%;
-    height: auto;
-    background-color: rgb(210, 240, 17);
+    background-color: rgb(17, 24, 240);
 }
 
 .form {
@@ -14,11 +9,11 @@
     align-items: center;
     gap: 10px;
     margin: 0 auto;
-    padding-top: 15px;
+    padding: 15px;
 }
 
 .input {
-    width: 450px;
+    width: 300px;
     height: 40px;
     border: rgb(97, 2, 2);
     border-radius: 18px;
@@ -30,17 +25,17 @@
     box-shadow: 5px 5px 5px black;
 }
 
-.submitBtn {
-    width: 40px;
+.searchBtn {
+    width: 100px;
     height: 40px;
     border: 5%;
     background-color: rgb(245, 187, 187);
-    /* border-radius: 50%; */
+
     align-items: center;
     justify-content: center;
 }
 
-.submitBtn:hover {
+.searchBtn:hover {
     cursor: pointer;
     box-shadow: 5px 5px 5px black;
     color: rgb(101, 2, 2);

@@ -1,38 +1,38 @@
-import React from "react";
 import toast from "react-hot-toast";
 import s from "./SearchBar.module.css";
 import { Form, Field, Formik } from "formik";
 
 const SearchBar = ({ setQuery }) => {
   const initialValues = { query: "" };
-  const handleSubmit = (values) => {
-    setQuery(values.query);
-  };
-  // const formSubmit = (e) => {
-  //   e.preventDefault();
-  //   const { value } = e.target.elements.search;
 
-  //   console.log(value);
-  //   if (!value) {
-  //     return toast.error("This didn't work.");
-  //   }
-  //   onSubmit(value);
-  //   form.reset();
+  const handleSubmit = (values, { resetForm }) => {
+    if (!values.query.trim()) {
+      console.log("!values.query", !values.query);
+      return toast.error("Please, enter a text to search for images");
+    }
+    setQuery(values.query);
+    resetForm();
+  };
 
   return (
-    <div>
+    <header className={s.header}>
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-        <Form>
+        <Form className={s.form}>
           <Field
+            className={s.input}
             name="query"
             placeholder="Enter search images or photos"
             type="search"
+            autoComplete="off"
+            autoFocus
           />
 
-          <button type="submit">Search</button>
+          <button className={s.searchBtn} type="submit">
+            Search
+          </button>
         </Form>
       </Formik>
-    </div>
+    </header>
   );
 };
 
