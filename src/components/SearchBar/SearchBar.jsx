@@ -6,8 +6,8 @@ const SearchBar = ({ setQuery }) => {
   const initialValues = { query: "" };
 
   const handleSubmit = (values, { resetForm }) => {
-    if (!values.query.trim()) {
-      console.log("!values.query", !values.query);
+    if (!values) {
+      console.log("!values.query", values);
       return toast.error("Please, enter a text to search for images");
     }
     setQuery(values.query);

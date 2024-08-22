@@ -16,13 +16,13 @@
     width: 300px;
     height: 40px;
     border: rgb(97, 2, 2);
-    border-radius: 18px;
+    border-radius: 14px;
     padding: 10px 10px 10px 40px;
 }
 
 .input:hover {
     cursor: pointer;
-    box-shadow: 5px 5px 5px black;
+    box-shadow: 5px 5px 5px rgb(202, 97, 97);
 }
 
 .searchBtn {
