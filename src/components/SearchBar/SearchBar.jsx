@@ -20,7 +20,7 @@ const SearchBar = ({ setQuery }) => {
           <Field
             className={s.input}
             name="query"
-            placeholder="Enter search images or photos"
+            placeholder="Enter a text to search for images"
             type="search"
             autoComplete="off"
             autoFocus
