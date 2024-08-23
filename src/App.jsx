@@ -7,6 +7,7 @@ import Loader from "./components/Loader/Loader";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./components/ImageModal/ImageModal";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   const [result, setResult] = useState([]);
@@ -57,6 +58,7 @@ const App = () => {
   };
   return (
     <div>
+      <Toaster />
       <SearchBar setQuery={handleSetQuery} />
       {isError && <ErrorMessage />}
       {query.length > 0 && (
